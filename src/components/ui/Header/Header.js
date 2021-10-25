@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import './Header.css'
 
@@ -48,6 +49,13 @@ const Header = ({ user }) => {
       </div>
     </header>
   )
+}
+
+Header.propTypes = {
+  user: PropTypes.shape({
+    picture: PropTypes.string.isRequired,
+    name: PropTypes.string,
+  }),
 }
 
 export default Header

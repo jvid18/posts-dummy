@@ -21,7 +21,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 
 ProtectedRoute.propTypes = {
   component: PropTypes.elementType.isRequired,
-  path: PropTypes.string.isRequired,
+  path: PropTypes.string,
   exact: PropTypes.bool,
 }
 

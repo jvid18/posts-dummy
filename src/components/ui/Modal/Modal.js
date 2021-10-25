@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useHistory } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import './Modal.css'
 
@@ -48,6 +49,13 @@ const Modal = ({ children, title, onClose, style }) => {
     </div>,
     document.getElementById('modal-root')
   )
+}
+
+Modal.propTypes = {
+  children: PropTypes.elementType,
+  title: PropTypes.string,
+  onClose: PropTypes.func,
+  style: PropTypes.object,
 }
 
 export default Modal

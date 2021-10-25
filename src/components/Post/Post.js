@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link, useLocation } from 'react-router-dom'
 import Tag from '../ui/Tag/Tag'
 
-import HeartIcon from '../ui/Heart/HeartIcon'
+import HeartIcon from '../ui/HeartIcon/HeartIcon'
 import User from '../ui/User/User'
 
 import './Post.css'
@@ -55,9 +55,14 @@ Post.propTypes = {
   id: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   likes: PropTypes.number.isRequired,
-  tags: PropTypes.array.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   text: PropTypes.string.isRequired,
-  owner: PropTypes.object.isRequired,
+  owner: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+  }),
 }
 
 export default Post
