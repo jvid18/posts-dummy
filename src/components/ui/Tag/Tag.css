@@ -1,0 +1,11 @@
+.tag {
+	background-color: var(--color-grey-dark-1);
+	color: white;
+	display: inline-block;
+	border-radius: 2rem;
+}
+
+.tag__text {
+	padding: .1rem 1.5rem;
+	text-transform: uppercase;
+}

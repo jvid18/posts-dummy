@@ -1,0 +1,12 @@
+.comment {
+	padding-bottom: 2rem;
+}
+
+.comment__body {
+	padding-left: 5rem;
+}
+
+.comment__date {
+	margin-top: .2rem;
+	color: var(--color-grey-dark-3);
+}
