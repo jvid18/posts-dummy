@@ -1,31 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { initTags } from '../../store/filter/actions'
-import { filterPostsByTag } from '../../store/post/actions'
+import { initTags, setTag } from '../../store/filter/actions'
+import { filterPostsByTag, initPosts } from '../../store/post/actions'
 
 import './PostFilter.css'
 
 const PostFilter = () => {
-  const [tag, setTag] = useState('')
+  const [tag, setTagState] = useState('')
   const tags = useSelector(({ filter }) => filter.data)
+  const tagApplied = useSelector(({ filter }) => filter.tagApplied)
   const dispatch = useDispatch()
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    if (tags.indexOf(tag) === -1) {
-      alert('Invalid tag')
-      return
-    }
+    if (tag.trim() === tagApplied) return
 
     if (!tag.trim()) {
-      dispatch(initTags())
-    } else {
+      dispatch(initPosts())
+      dispatch(setTag(''))
+    } else if (tags.indexOf(tag) !== -1) {
+      dispatch(setTag(tag))
       dispatch(filterPostsByTag(tag))
+    } else {
+      alert('Tag not found')
     }
   }
 
-  const handleChange = ({ target }) => setTag(target.value)
+  const handleChange = ({ target }) => setTagState(target.value)
 
   useEffect(() => {
     ;(() => {
@@ -36,10 +38,12 @@ const PostFilter = () => {
   return (
     <section className="filter">
       <div className="filter-content">
-        <h2 className="filter__title">Filter</h2>
+        <div className="filter__header">
+          <h2 className="filter__title">Filter</h2>
+        </div>
         <form onSubmit={handleSubmit} className="filter-form">
           <label htmlFor="tag-input" className="filter__label">
-            <span className="filter__text">Search by tag</span>
+            <span className="filter__text">By tag</span>
             <div className="filter__box">
               <input
                 type="text"
@@ -48,6 +52,7 @@ const PostFilter = () => {
                 className="filter__input"
                 placeholder="Type some..."
                 onChange={handleChange}
+                value={tag}
               />
               <button className="filter__btn">Search</button>
             </div>

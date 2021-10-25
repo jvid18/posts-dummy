@@ -1,8 +1,12 @@
 import { getAllPosts, getPostsByTag } from '../../services/posts'
-import { POST_FILTERED, POST_INIT } from './types'
+import { POST_FILTERED, POST_INIT, POST_LOADING } from './types'
 
 export const initPosts = () => {
   return async (dispatch) => {
+    dispatch({
+      type: POST_LOADING,
+    })
+
     const data = await getAllPosts()
 
     dispatch({
@@ -14,6 +18,10 @@ export const initPosts = () => {
 
 export const filterPostsByTag = (tag) => {
   return async (dispatch) => {
+    dispatch({
+      type: POST_LOADING,
+    })
+
     const data = await getPostsByTag(tag)
 
     dispatch({

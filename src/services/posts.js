@@ -38,8 +38,6 @@ export const getPostsByTag = async (tag, config = {}) => {
       ...rest,
     })
 
-    console.log(res)
-
     return res.data
   } catch (err) {
     console.log(err)

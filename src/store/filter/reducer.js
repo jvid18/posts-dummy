@@ -1,4 +1,4 @@
-import { TAGS_INIT } from './types'
+import { TAGS_INIT, TAG_SET } from './types'
 
 const initialState = {
   tags: [],
@@ -18,8 +18,16 @@ export const filterReducer = (state = initialState, { type, payload }) => {
     }
   }
 
+  const setTag = () => {
+    return {
+      ...state,
+      tagApplied: payload,
+    }
+  }
+
   const actions = {
     [TAGS_INIT]: init,
+    [TAG_SET]: setTag,
     default: () => state,
   }
 
