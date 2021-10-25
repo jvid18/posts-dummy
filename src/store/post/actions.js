@@ -33,6 +33,10 @@ export const filterPostsByTag = (tag) => {
 
 export const loadMorePosts = (page) => {
   return async (dispatch) => {
+    dispatch({
+      type: POST_LOAD_MORE,
+    })
+
     const data = await getAllPosts({
       params: {
         page,

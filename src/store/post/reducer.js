@@ -38,6 +38,12 @@ export const postReducer = (state = initialState, { type, payload }) => {
   })
 
   const loadMore = () => {
+    if (!payload)
+      return {
+        ...state,
+        isLoadingMore: false,
+      }
+
     const { page, limit, data } = payload
 
     return {
