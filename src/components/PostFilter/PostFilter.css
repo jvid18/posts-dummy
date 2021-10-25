@@ -1,0 +1,49 @@
+.filter {
+  max-width: var(--max-width);
+  margin: 2rem auto;
+
+  padding: 0 1rem;
+}
+
+.filter-content {
+  background-color: var(--color-grey-light-1);
+  padding: 1rem;
+  border-radius: .5rem;
+}
+
+.filter__title {
+  margin-bottom: 1.5rem;
+}
+
+.filter__box {
+  display: flex;
+  margin-top: .3rem;
+  padding: .2rem 0;
+
+  --filter-border-radius: 1rem;
+  --filter-padding: .5rem 1rem;
+}
+
+.filter__input-container {
+  flex: 2;
+}
+
+.filter__input {
+  border-radius: var(--filter-border-radius) 0 0 var(--filter-border-radius);
+  border: none;
+  width: 100%;
+  padding: var(--filter-padding);
+}
+
+.filter__input:focus {
+  outline: 1px solid var(--color-primary);
+}
+
+.filter__btn {
+  border: none;
+  border-radius: 0 var(--filter-border-radius) var(--filter-border-radius) 0;
+  padding: var(--filter-padding);
+  background-color: var(--color-primary);
+  color: var(--color-grey-light-1);
+  cursor: pointer;
+}
