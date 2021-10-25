@@ -19,7 +19,7 @@ const Posts = () => {
 
   return (
     <section className="posts">
-      {!posts.data
+      {posts.isLoading
         ? [...new Array(10)].map((_, i) => <PostLoader key={i} />)
         : posts.data.map((post) => <Post key={post.id} {...post} />)}
     </section>
