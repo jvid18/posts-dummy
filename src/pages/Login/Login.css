@@ -1,0 +1,33 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  padding: 1rem 2rem;
+}
+
+.main__title {
+  margin-bottom: 1.5rem;
+  color: var(--color-blue-dark-1);
+}
+
+.login__container {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 2rem;
+}
+
+.login__button {
+  padding: 1.5rem 3rem;
+  background-color: var(--color-blue-dark-1);
+  color: var(--color-grey-light-1);
+  border-radius: .4rem;
+  border: none;
+}
+
+.login__button:hover {
+  cursor: pointer;
+}
