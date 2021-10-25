@@ -1,10 +1,17 @@
-import { POST_FILTERED, POST_INIT, POST_LOADING } from './types'
+import {
+  POST_FILTERED,
+  POST_INIT,
+  POST_LOADING,
+  POST_LOADING_MORE,
+  POST_LOAD_MORE,
+} from './types'
 
 const initialState = {
   data: [],
   page: 0,
   limit: 20,
   isLoading: true,
+  isLoadingMore: false,
 }
 
 export const postReducer = (state = initialState, { type, payload }) => {
@@ -13,7 +20,7 @@ export const postReducer = (state = initialState, { type, payload }) => {
     isLoading: true,
   })
 
-  const init = () => {
+  const loadData = () => {
     const { page, limit, data } = payload
 
     return {
@@ -25,22 +32,29 @@ export const postReducer = (state = initialState, { type, payload }) => {
     }
   }
 
-  const filtered = () => {
+  const loadingMore = () => ({
+    ...state,
+    isLoadingMore: true,
+  })
+
+  const loadMore = () => {
     const { page, limit, data } = payload
 
     return {
       ...state,
-      data,
+      data: [].concat(state.data, data),
       page,
       limit,
-      isLoading: false,
+      isLoadingMore: false,
     }
   }
 
   const actions = {
     [POST_LOADING]: loading,
-    [POST_INIT]: init,
-    [POST_FILTERED]: filtered,
+    [POST_INIT]: loadData,
+    [POST_FILTERED]: loadData,
+    [POST_LOADING_MORE]: loadingMore,
+    [POST_LOAD_MORE]: loadMore,
     default: () => state,
   }
 

@@ -1,17 +1,36 @@
 .posts {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 1rem;
+}
+
+.posts__grid {
   display: grid;
   gap: 2rem;
   grid-auto-rows: 22rem;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 50rem), 1fr));
+}
 
-  padding: 1rem;
+.post__footer-loading {
+  text-align: center;
+}
 
-  max-width: var(--max-width);
-  margin: auto;
+.posts__actions {
+  display: flex;
+  justify-content: center;
+
+  padding: 2rem 0;
+}
+
+.posts__more {
+  background-color: var(--color-primary);
+  color: var(--color-grey-light-1);
+  padding: 1rem 2rem;
+  border: 0;
 }
 
 @media only screen and (max-width: 500px) {
-  .posts {
+  .posts__grid {
     grid-auto-rows: 40rem;
   }
 }

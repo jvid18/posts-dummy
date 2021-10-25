@@ -1,5 +1,5 @@
 import { getAllPosts, getPostsByTag } from '../../services/posts'
-import { POST_FILTERED, POST_INIT, POST_LOADING } from './types'
+import { POST_FILTERED, POST_INIT, POST_LOADING, POST_LOAD_MORE } from './types'
 
 export const initPosts = () => {
   return async (dispatch) => {
@@ -26,6 +26,40 @@ export const filterPostsByTag = (tag) => {
 
     dispatch({
       type: POST_FILTERED,
+      payload: data,
+    })
+  }
+}
+
+export const loadMorePosts = (page) => {
+  return async (dispatch) => {
+    const data = await getAllPosts({
+      params: {
+        page,
+      },
+    })
+
+    dispatch({
+      type: POST_LOAD_MORE,
+      payload: data,
+    })
+  }
+}
+
+export const loadMorePostsByTag = (tag, page) => {
+  return async (dispatch) => {
+    dispatch({
+      type: POST_LOAD_MORE,
+    })
+
+    const data = await getPostsByTag(tag, {
+      params: {
+        page,
+      },
+    })
+
+    dispatch({
+      type: POST_LOAD_MORE,
       payload: data,
     })
   }
