@@ -7,24 +7,26 @@ import './PostFilter.css'
 
 const PostFilter = () => {
   const [tag, setTagState] = useState('')
-  const tags = useSelector(({ filter }) => filter.data)
-  const tagApplied = useSelector(({ filter }) => filter.tagApplied)
+  const { data: tags, tagApplied } = useSelector(({ filter }) => filter)
   const dispatch = useDispatch()
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    if (tag.trim() === tagApplied) return
+    if (tag.trim() === tagApplied || !tag.trim()) return
 
-    if (!tag.trim()) {
-      dispatch(initPosts())
-      dispatch(setTag(''))
-    } else if (tags.indexOf(tag) !== -1) {
+    if (tags.indexOf(tag) !== -1) {
       dispatch(setTag(tag))
       dispatch(filterPostsByTag(tag))
     } else {
       alert('Tag not found')
     }
+  }
+
+  const handleClear = () => {
+    setTagState('')
+    dispatch(setTag(''))
+    dispatch(initPosts())
   }
 
   const handleChange = ({ target }) => setTagState(target.value)
@@ -40,6 +42,11 @@ const PostFilter = () => {
       <div className="filter-content">
         <div className="filter__header">
           <h2 className="filter__title">Filter</h2>
+        </div>
+        <div className="filter__buttons">
+          <button onClick={handleClear} className="filter__clear-btn">
+            Clear
+          </button>
         </div>
         <form onSubmit={handleSubmit} className="filter-form">
           <label htmlFor="tag-input" className="filter__label">
