@@ -1,0 +1,8 @@
+.post-comments {
+  padding: 0 3rem;
+}
+
+.post-comments__not-found {
+  height: 4rem;
+  text-align: center;
+}
