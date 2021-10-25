@@ -1,0 +1,17 @@
+.posts {
+  display: grid;
+  gap: 2rem;
+  grid-auto-rows: 22rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 50rem), 1fr));
+
+  padding: 1rem;
+
+  max-width: var(--max-width);
+  margin: auto;
+}
+
+@media only screen and (max-width: 500px) {
+  .posts {
+    grid-auto-rows: 40rem;
+  }
+}
